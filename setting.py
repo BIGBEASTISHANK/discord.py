@@ -1,13 +1,14 @@
 # Importing Libs
 import discord
 import os
+from dotenv import load_dotenv
 from random import *
 from datetime import datetime
 from discord.ext import commands
 
 # Defining variables
-prefix = "'"
-token = "NzkxNTg1NTM0NTk0MTIxNzU4.X-RTeg.a8gRZjlBA8qmp5i04XRxXjtDjIA"
+prefix = os.getenv("PREFIX")
+token = os.getenv("TOKEN")
 status = discord.Status.dnd
 activity = discord.Game("with discord servers 😈")
 client = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), help_command=None)
