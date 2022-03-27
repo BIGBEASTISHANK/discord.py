@@ -4,9 +4,11 @@ from setting import *
 # Confess command
 ##################
 @client.command()
-async def confess(ctx, *,word:str):
+async def confess(ctx, *,words:str):
     await ctx.channel.purge(limit=1)
-    await ctx.send(f"{word}")
+
+    embed=discord.Embed(title="Anonymous Confession", description=f"{words}", color=0x00f2ff)
+    await ctx.send(embed=embed)
 
 ########################
 # Confess command error

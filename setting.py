@@ -1,5 +1,6 @@
 # Importing Libsimport discord
 import os
+import time
 import discord
 from random import *
 from dotenv import load_dotenv
