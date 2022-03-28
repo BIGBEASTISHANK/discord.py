@@ -1,4 +1,5 @@
-from pydoc import describe
+# I know how to use help class but I like hardcoding it so stfu.
+
 from setting import *
 
 ###############
