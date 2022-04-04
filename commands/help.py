@@ -101,7 +101,7 @@ async def help_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
 
         # Variable
-        description = '**<:invite:822410792804417567> [ Invite](https://top.gg/bot/709984874924081174/)** | **<:support:822410788773691392> [ Support Server](https://discord.gg/XfngbaaG2r)** |  **<:sourecode:822410789122080768> [ Source Code](https://github.com/BIGBEASTISHANK/discord.py-sourcecode)** | **<:vote:826728613663342642> [ Vote](https://top.gg/bot/709984874924081174/vote)**'
+        description = '**<:invite:822410792804417567> [ Invite](https://top.gg/bot/709984874924081174/)** | **<:support:822410788773691392> [ Support Server](https://bigbeastishank.com/discord)** |  **<:sourecode:822410789122080768> [ Source Code](https://github.com/BIGBEASTISHANK/discord.py)** | **<:vote:826728613663342642> [ Vote](https://top.gg/bot/709984874924081174/vote)**'
 
         # Header
         embed = discord.Embed(
@@ -128,9 +128,4 @@ async def help_error(ctx, error):
     
     # Unknown error
     else:
-        embed = discord.Embed(title="Their is an error executing the command!",
-        description=f"```py\n{error} \n```", color=0x00f2ff)
-
-        channel = client.get_channel(960447193087631371)
-        await channel.send(embed=embed)
-        await ctx.send(embed=embed)
+        await unknown_error(ctx, error)

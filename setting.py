@@ -25,3 +25,15 @@ client = commands.Bot(
 event_path = "./events/"
 command_path = "./commands/"
 filelist = []
+
+# Function
+async def unknown_error(ctx, error):
+    embed = discord.Embed(title="Their is an error executing the command!",
+    description=f"```py\n{error} \n```", color=0x00f2ff)
+
+    invite = await ctx.channel.create_invite()
+    embed.add_field(name="Server Info", value=f"Command issued by {ctx.author.mention} in [Server]({invite}) **{ctx.guild.name}**")
+    embed.set_thumbnail(url=ctx.guild.icon_url)
+    channel = client.get_channel(960447193087631371)
+    await channel.send(embed=embed)
+    await ctx.send(embed=embed)

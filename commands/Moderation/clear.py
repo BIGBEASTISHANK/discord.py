@@ -23,13 +23,8 @@ async def clear_error(ctx, error):
         
     # Missing permision
     elif isinstance(error, commands.MissingPermissions):
-        await ctx.send(embed=discord.Embed(title="Missing Permision", description=f"Your dont have permission to clear, Nub", color=0x00f2ff))
+        await ctx.send(embed=discord.Embed(title="Missing Permision", description=f"Your dont have permission to clear, Noob", color=0x00f2ff))
     
     # Unknown error
     else:
-        embed = discord.Embed(title="Their is an error executing the command!",
-        description=f"```py\n{error} \n```", color=0x00f2ff)
-
-        channel = client.get_channel(960447193087631371)
-        await channel.send(embed=embed)
-        await ctx.send(embed=embed)
+        await unknown_error(ctx, error)
