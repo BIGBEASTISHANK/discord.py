@@ -1,23 +1,44 @@
 from setting import *
 
-
 @client.command()
 async def info(ctx):
+    
+    # Intro
     embed = discord.Embed(
         title=f"Info", description=f"Here is the info of this server!", color=0x00f2ff)
+    
+    # Guild icon
+    embed.set_thumbnail(url=ctx.guild.icon_url)
 
+    # Server Name
     embed.add_field(
-        name="Server Name:", value=f"`{ctx.message.guild.name}`", inline=False)
+        name="Server Name:", value=f"`{ctx.guild.name}`", inline=False)
     
+    # Owner of the server
     embed.add_field(
-        name="Owner:", value=f"<@{ctx.message.guild.owner_id}>", inline=False)
+        name="Owner:", value=f"<@{ctx.guild.owner_id}>", inline=False)
     
+    # User with nitro
     embed.add_field(
-        name="Premium User:", value=f"`{ctx.message.guild.premium_subscription_count}`", inline=False)
+        name="Server Booster(s)", value=f"`{ctx.guild.premium_subscription_count}`", inline=False)
     
+    # Member count
     embed.add_field(
-        name="Members:", value=f"`{ctx.message.guild.member_count}`", inline=False)
+        name="Members:", value=f"`{ctx.guild.member_count}`", inline=False)
     
+    # Region
     embed.add_field(
-        name="Region:", value=f"`{ctx.message.guild.region}`", inline=False)
+        name="Region:", value=f"`{ctx.guild.region}`", inline=False)
+    await ctx.send(embed=embed)
+
+# Error(s)
+@info.error
+async def info_error(ctx, error):    
+    
+    # Unknown error
+    embed = discord.Embed(title="Their is an error executing the command!",
+    description=f"```py\n{error} \n```", color=0x00f2ff)
+
+    channel = client.get_channel(960447193087631371)
+    await channel.send(embed=embed)
     await ctx.send(embed=embed)

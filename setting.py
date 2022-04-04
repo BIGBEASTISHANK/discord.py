@@ -3,8 +3,9 @@ import os
 import time
 import discord
 from random import *
-from dotenv import load_dotenv
+from discord.utils import get
 from datetime import datetime
+from dotenv import load_dotenv
 from discord.ext import commands
 
 # Inalizing

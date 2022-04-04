@@ -1,11 +1,5 @@
 # I know how to use help class but I like hardcoding it so stfu.
-
 from setting import *
-
-###############
-# Help command
-###############
-
 
 @client.command(aliases=['h'])
 async def help(ctx, command_help: str):
@@ -21,7 +15,7 @@ async def help(ctx, command_help: str):
         embed = discord.Embed(title=f"kick help command",
                               description=f"This will kick user", color=0x00f2ff)
         embed.add_field(
-            name=f"Example", value=f"{prefix}kick @Example For example", inline=False)
+            name=f"Example", value=f"{prefix}kick {ctx.author.mention}", inline=False)
         await ctx.send(embed=embed)
 
     # Ban
@@ -29,7 +23,7 @@ async def help(ctx, command_help: str):
         embed = discord.Embed(title=f"Ban help command",
                               description=f"This will ban user", color=0x00f2ff)
         embed.add_field(
-            name=f"Example", value=f"{prefix}ban @Example For example", inline=False)
+            name=f"Example", value=f"{prefix}ban {ctx.author.mention}", inline=False)
         await ctx.send(embed=embed)
 
     # Unban
@@ -37,7 +31,7 @@ async def help(ctx, command_help: str):
         embed = discord.Embed(title=f"Unban help command",
                               description=f"This will unban user", color=0x00f2ff)
         embed.add_field(name=f"Example",
-                        value=f"{prefix}unban Example#1234", inline=False)
+                        value=f"{prefix}unban {ctx.author}", inline=False)
         await ctx.send(embed=embed)
 
     # Confess
@@ -49,7 +43,7 @@ async def help(ctx, command_help: str):
         await ctx.send(embed=embed)
 
     # Clear
-    elif command_help == 'clear':
+    elif command_help == 'clear' or command_help == "purge":
         embed = discord.Embed(title=f"Clear help command",
                               description=f"This will clear the message in the channe", color=0x00f2ff)
         embed.add_field(name=f"Example",
@@ -63,16 +57,16 @@ async def help(ctx, command_help: str):
                                            description=f"This will tell you your (or the person you mention) pp size", color=0x00f2ff))
 
     # Slowmode
-    elif command_help == 'slowmode':
+    elif command_help == 'slowmode' or command_help == "sm":
         embed = discord.Embed(title=f"Slowmode help command",
                               description=f"This slow down the chat!", color=0x00f2ff)
         embed.add_field(name=f"Example",
-                        value=f"{prefix}slowmode 5", inline=False)
+                        value=f"{prefix}slowmode 5[s, m, h]", inline=False)
         embed.add_field(name=f"Aliases", value=f"`sm`", inline=False)
         await ctx.send(embed=embed)
 
     # Calculate
-    elif command_help == 'calculate':
+    elif command_help == 'calculate' or command_help == "calc":
         embed = discord.Embed(title=f"Calculate help command",
                               description=f"This slow down the chat!", color=0x00f2ff)
         embed.add_field(name=f"Example",
@@ -85,6 +79,15 @@ async def help(ctx, command_help: str):
         embed = discord.Embed(title=f"Info help command",
                               description=f"This shows the server info!", color=0x00f2ff)
         await ctx.send(embed=embed)
+    
+    # Create Text Channel
+    elif command_help == "createtextchannel" or command_help=="ctc":
+        embed = discord.Embed(title=f"Create Text Channel help command",
+                              description=f"This create a new text channel in the category in which this command has been executed ", color=0x00f2ff)
+        embed.add_field(name=f"Example",
+                        value=f"{prefix}createtextchannel this is a test channel", inline=False)
+        embed.add_field(name=f"Aliases", value=f"`ctc`", inline=False)
+        await ctx.send(embed=embed)
 
     # None
     else:
@@ -92,11 +95,7 @@ async def help(ctx, command_help: str):
                               description=f"Help for this command dosent exist, please check if the command is right or not.", color=0x00f2ff)
         await ctx.send(embed=embed)
 
-#####################
-# Help command error
-#####################
-
-
+# Error(s)
 @help.error
 async def help_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
@@ -116,7 +115,7 @@ async def help_error(ctx, error):
         embed.add_field(name='❯ General',
                         value='`confess`', inline=False)
         embed.add_field(
-            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode`', inline=False)
+            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode` | `createtextchannel`', inline=False)
         embed.add_field(name='❯ Fun', value='`pp` | `calculate`', inline=False)
         embed.add_field(name='❯ Utility', value='`ping` | `info`', inline=False)
 
@@ -126,3 +125,12 @@ async def help_error(ctx, error):
 
         await ctx.send(embed=embed)
         return
+    
+    # Unknown error
+    else:
+        embed = discord.Embed(title="Their is an error executing the command!",
+        description=f"```py\n{error} \n```", color=0x00f2ff)
+
+        channel = client.get_channel(960447193087631371)
+        await channel.send(embed=embed)
+        await ctx.send(embed=embed)
