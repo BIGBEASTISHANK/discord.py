@@ -88,6 +88,16 @@ async def help(ctx, command_help: str):
                         value=f"{prefix}createtextchannel this is a test channel", inline=False)
         embed.add_field(name=f"Aliases", value=f"`ctc`", inline=False)
         await ctx.send(embed=embed)
+        
+    # Create Voice Channel
+    elif command_help == "createvoicechannel" or command_help=="cvc":
+        embed = discord.Embed(title=f"Create Voice Channel help command",
+                              description=f"This create a new voice channel in the category in which this command has been executed ", color=0x00f2ff)
+        embed.add_field(name=f"Example",
+                        value=f"{prefix}createvoicechannel 5 this is a example channel", inline=False)
+        embed.add_field(name=f"Aliases", value=f"`cvc`", inline=False)
+        embed.set_footer(text="Use 0 as limit to set no limit!")
+        await ctx.send(embed=embed)
 
     # None
     else:
@@ -115,7 +125,7 @@ async def help_error(ctx, error):
         embed.add_field(name='❯ General',
                         value='`confess`', inline=False)
         embed.add_field(
-            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode` | `createtextchannel`', inline=False)
+            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode` | `createtextchannel` | `createvoicechannel`', inline=False)
         embed.add_field(name='❯ Fun', value='`pp` | `calculate`', inline=False)
         embed.add_field(name='❯ Utility', value='`ping` | `info`', inline=False)
 

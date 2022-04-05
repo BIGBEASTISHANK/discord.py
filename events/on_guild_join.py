@@ -2,7 +2,7 @@ from setting import *
 
 @client.event
 async def on_guild_join(guild):
-    channel = client.get_channel(826738618486751242)
+    channel = client.get_channel(int(os.getenv("BOT_LOG_ID")))
     
     embed = discord.Embed(title="Joined A New server!", color=0x00f2ff)
     embed.set_thumbnail(url=guild.icon_url)

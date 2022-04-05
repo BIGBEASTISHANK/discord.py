@@ -2,7 +2,7 @@ from setting import *
 
 @commands.has_permissions(kick_members=True)
 @client.command()
-async def kick(ctx, member : discord.Member, *, reason="No reason"):
+async def kick(ctx, member : discord.Member, *, reason: str="No reason"):
 
     # Kicking user
     await member.kick(reason=reason)

@@ -2,7 +2,7 @@ from setting import *
 
 @commands.has_permissions(ban_members=True)
 @client.command()
-async def ban(ctx, member : discord.Member, *, reason=None):
+async def ban(ctx, member : discord.Member, *, reason: str="No reason"):
     
     # Banning member
     await member.ban(reason=reason)

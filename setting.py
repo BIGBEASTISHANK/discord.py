@@ -34,6 +34,6 @@ async def unknown_error(ctx, error):
     invite = await ctx.channel.create_invite()
     embed.add_field(name="Server Info", value=f"Command issued by {ctx.author.mention} in [Server]({invite}) **{ctx.guild.name}**")
     embed.set_thumbnail(url=ctx.guild.icon_url)
-    channel = client.get_channel(960447193087631371)
+    channel = client.get_channel(int(os.getenv("UNKNOWN_ERROR_ID")))
     await channel.send(embed=embed)
     await ctx.send(embed=embed)
