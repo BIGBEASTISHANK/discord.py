@@ -92,17 +92,27 @@ async def help(ctx, command_help: str):
     # Create Voice Channel
     elif command_help == "createvoicechannel" or command_help=="cvc":
         embed = discord.Embed(title=f"Create Voice Channel help command",
-                              description=f"This create a new voice channel in the category in which this command has been executed ", color=0x00f2ff)
+                              description=f"This create a new voice channel in the category in which this command has been executed!", color=0x00f2ff)
         embed.add_field(name=f"Example",
                         value=f"{prefix}createvoicechannel 5 this is a example channel", inline=False)
         embed.add_field(name=f"Aliases", value=f"`cvc`", inline=False)
         embed.set_footer(text="Use 0 as limit to set no limit!")
         await ctx.send(embed=embed)
+        
+    # Nickname
+    elif command_help == "nickname" or command_help == "nick":
+        embed = discord.Embed(title=f"Nichname help command",
+                              description=f"This change the nickname of mentioned user!", color=0x00f2ff)
+        embed.add_field(name=f"Example",
+                        value=f"{prefix}nickname {ctx.author.mention} Exmaple", inline=False)
+        embed.add_field(name=f"Aliases", value=f"`nick`", inline=False)
+        embed.set_footer(text="Please use character limit of 32 or lower")
+        await ctx.send(embed=embed)
 
     # None
     else:
         embed = discord.Embed(title=f"Command does not exist",
-                              description=f"Help for this command dosent exist, please check if the command is right or not.", color=0x00f2ff)
+                              description=f"Help for this command dosent exist, please check if the command is correct and present!", color=0x00f2ff)
         await ctx.send(embed=embed)
 
 # Error(s)
@@ -125,7 +135,7 @@ async def help_error(ctx, error):
         embed.add_field(name='❯ General',
                         value='`confess`', inline=False)
         embed.add_field(
-            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode` | `createtextchannel` | `createvoicechannel`', inline=False)
+            name='❯ Moderation', value='`kick` | `ban` | `unban` | `clear` | `slowmode` | `createtextchannel` | `createvoicechannel` | `nickname`', inline=False)
         embed.add_field(name='❯ Fun', value='`pp` | `calculate`', inline=False)
         embed.add_field(name='❯ Utility', value='`ping` | `info`', inline=False)
 

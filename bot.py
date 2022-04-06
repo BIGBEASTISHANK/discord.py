@@ -18,5 +18,5 @@ for command_file in filelist:
   	exec(open(command_file).read())
 
 # Running the bot
-keep_alive() # Uncomment this when pushing to repo
+# keep_alive() # Uncomment this when pushing to repo
 client.run(token)
